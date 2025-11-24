@@ -196,3 +196,40 @@
     ![](2.jpg)
 
     ![](1.jpg)
+
+你在 deleter 里用的是 [&] 按引用捕获外部变量 _raw_ptr（以及 local_device）。deleter 是延迟执行的（由 pool 在以后某个时间点调用），如果在这期间 _raw_ptr 被改写、复用或置空，那么：
+
+deleter 可能 释放了错误的地址（UB / double free）；
+
+或者根本没释放到当初分配的那块内存；
+
+local_device 也可能在释放时已经不是当时的那个 device。
+
+方案 A：释放回调传入的 data_ptr
+
+（通常内存池会把当初传入的指针作为回调参数传回来）
+
+CudaMalloc(&_raw_ptr, _buffer_size);
+
+auto dev_idx = local_device.index();
+_storage = std::make_shared<NDArrayStorage>(
+    BorrowToMemoryPool(local_device, _raw_ptr, _buffer_size,
+        [dev_idx](DataPtr data_ptr) {
+            hetu::cuda::CUDADeviceGuard guard(dev_idx);
+            CudaFree(static_cast<void*>(data_ptr)); // 或与 DataPtr 的真实类型匹配
+        }));
+
+方案 B：值捕获当时的指针与 device
+
+（即使 _raw_ptr 之后改变，也不会影响释放）
+
+CudaMalloc(&_raw_ptr, _buffer_size);
+
+void* p = _raw_ptr;                   // 固定住要释放的地址
+int dev_idx = local_device.index();   // 固定住设备
+_storage = std::make_shared<NDArrayStorage>(
+    BorrowToMemoryPool(local_device, p, _buffer_size,
+        [p, dev_idx](DataPtr) {
+            hetu::cuda::CUDADeviceGuard guard(dev_idx);
+            CudaFree(p);
+        }));
