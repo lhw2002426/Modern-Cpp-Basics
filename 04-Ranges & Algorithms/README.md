@@ -93,6 +93,13 @@
    >
    > 所以，`std::reference_wrapper`由于可以...，因此这次拷贝相当于把原来的参数绑定在了引用上。
 
+按值传递的副本（decay-copy 后的值）,值拷贝却指向原对象
+
+std::bind_front/back 的默认语义是：
+把你传进去的绑定参数做 decay 后按值拷贝进 binder 对象里。decay 会把引用去掉：
+要保留引用语义，你必须传入一个“可拷贝但指向原对象”的包装器。
+std::ref(x) 返回 std::reference_wrapper<int>，内部存 int*，binder 按值存它，调用时再还原成 int&：
+
 2. 测试一下transparent operator相关的优化：
 
    ```c++
@@ -129,3 +136,61 @@
 3. 既然`std::function`相关的类有性能损失，为什么不总是使用模板呢？构想一个简单的任务，它使用模板会非常不方便去存储各种函数体。
 
    > 提示：想想什么时候必须要统一类型？
+
+比较函数？
+
+为什么不总用模板？
+
+模板适合：
+
+可调用对象类型在编译期已知；
+
+不需要把不同类型的函数体放到同一个容器里；
+
+追求内联/零开销。
+
+但模板很不方便的场景：
+
+需要“异质回调列表”
+每个 lambda 都是不同、匿名的类型。vector 只能存一种类型。
+仅用模板就会要求所有回调类型一致，做不到“各种 lambda 混存”。
+
+运行期决定存哪种函数体
+模板是编译期多态，无法自然表达“读配置/插件后再决定注册什么回调”。
+
+跨动态库/插件边界
+模板需要在使用处实例化，不利于 ABI 稳定；类型擦除接口更合适。
+
+一个用模板会非常难受的简单任务
+
+事件系统/GUI 回调/任务调度器：用户自定义如何处理
+
+你有一个事件总线，很多模块注册处理函数。
+每个处理函数是捕获不同变量的 lambda → 类型都不同。
+需要统一存到一个 list 里，之后触发时逐个调用。
+
+struct Event { int code; };
+
+class EventBus {
+public:
+    void on(std::function<void(const Event&)> cb) {
+        handlers_.push_back(std::move(cb));
+    }
+    void emit(const Event& e) {
+        for (auto& h : handlers_) h(e);
+    }
+private:
+    std::vector<std::function<void(const Event&)>> handlers_;
+};
+
+
+如果只用模板：
+
+你要给 vector 一个固定元素类型；
+
+但不同 lambda 类型不同，根本没法直接放一起；
+
+最终只能自己手写一套类型擦除（本质上又造了 std::function）。
+
+所以 std::function 的价值在于：
+用一点性能开销换取动态多态 + 易存储 + 易组合。
