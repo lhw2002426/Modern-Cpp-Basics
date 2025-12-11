@@ -1,0 +1,9 @@
+{
+  "revision": 0,
+  "rules": [
+    {
+      "primary-output": "module-test/CMakeFiles/module-global-frag.dir/global-fragment/Old.cpp.o"
+    }
+  ],
+  "version": 1
+}

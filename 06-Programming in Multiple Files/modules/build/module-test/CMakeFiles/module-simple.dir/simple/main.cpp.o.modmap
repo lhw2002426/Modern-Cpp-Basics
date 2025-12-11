@@ -1,0 +1,3 @@
+-fmodule-file=std=CMakeFiles/__cmake_cxx23.dir/std.pcm
+-fmodule-file=Customer=module-test/CMakeFiles/module-simple.dir/Customer.pcm
+-fmodule-file=Person=module-test/CMakeFiles/module-simple.dir/Person.pcm

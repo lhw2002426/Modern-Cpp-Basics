@@ -1,0 +1,3 @@
+-x c++-module
+-fmodule-output=module-test/CMakeFiles/module-simple.dir/Person.pcm
+-fmodule-file=std=CMakeFiles/__cmake_cxx23.dir/std.pcm

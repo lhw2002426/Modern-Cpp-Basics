@@ -1,0 +1,14 @@
+ninja_dyndep_version = 1.0
+build module-test/CMakeFiles/module-partition.dir/partition/Person.cpp.o: dyndep | CMakeFiles/__cmake_cxx23.dir/std.pcm module-test/CMakeFiles/module-partition.dir/Person.pcm
+
+build module-test/CMakeFiles/module-partition.dir/partition/main.cpp.o: dyndep | CMakeFiles/__cmake_cxx23.dir/std.pcm module-test/CMakeFiles/module-partition.dir/Person.pcm
+
+build module-test/CMakeFiles/module-partition.dir/partition/Person-Order.mpp.o | module-test/CMakeFiles/module-partition.dir/Person-Order.pcm: dyndep | CMakeFiles/__cmake_cxx23.dir/std.pcm
+  restat = 1
+
+build module-test/CMakeFiles/module-partition.dir/partition/Person-Utils.mpp.o | module-test/CMakeFiles/module-partition.dir/Person-Utils.pcm: dyndep | module-test/CMakeFiles/module-partition.dir/Person-Order.pcm CMakeFiles/__cmake_cxx23.dir/std.pcm
+  restat = 1
+
+build module-test/CMakeFiles/module-partition.dir/partition/Person.mpp.o | module-test/CMakeFiles/module-partition.dir/Person.pcm: dyndep | module-test/CMakeFiles/module-partition.dir/Person-Utils.pcm CMakeFiles/__cmake_cxx23.dir/std.pcm
+  restat = 1
+

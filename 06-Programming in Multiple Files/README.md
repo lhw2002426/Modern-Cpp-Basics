@@ -5,6 +5,10 @@ Docker使用：
 ```bash
 docker pull extracreativity/linux-cpp-module:first
 docker run -it --name 你的容器名字 extracreativity/linux-cpp-module:first
+
+docker start multi-file
+docker exec -it multi-file bash
+
 ```
 
 以上拉取了镜像并创建了容器，可以按`Ctrl + Z`来退出容器的命令行。此后如果想停止容器可以用`docker stop 名字`，停止的容器重新启动可以用`docker start 名字`（当然这两个可以通过docker的GUI操作）。如果容器已经开始，想要进入新的命令行，可以使用命令`docker exec -it bash`。

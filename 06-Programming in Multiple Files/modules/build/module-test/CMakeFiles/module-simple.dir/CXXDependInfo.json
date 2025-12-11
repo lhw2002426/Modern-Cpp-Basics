@@ -1,0 +1,43 @@
+{
+	"bmi-installation" : null,
+	"compiler-frontend-variant" : "GNU",
+	"compiler-id" : "Clang",
+	"compiler-simulate-id" : "",
+	"config" : "",
+	"cxx-modules" : 
+	{
+		"module-test/CMakeFiles/module-simple.dir/simple/Customer.mpp.o" : 
+		{
+			"bmi-only" : false,
+			"destination" : null,
+			"name" : "CXX_MODULES",
+			"relative-directory" : "simple",
+			"source" : "/ws/modules/module-test/simple/Customer.mpp",
+			"type" : "CXX_MODULES",
+			"visibility" : "PUBLIC"
+		},
+		"module-test/CMakeFiles/module-simple.dir/simple/Person.mpp.o" : 
+		{
+			"bmi-only" : false,
+			"destination" : null,
+			"name" : "CXX_MODULES",
+			"relative-directory" : "simple",
+			"source" : "/ws/modules/module-test/simple/Person.mpp",
+			"type" : "CXX_MODULES",
+			"visibility" : "PUBLIC"
+		}
+	},
+	"dir-cur-bld" : "/ws/modules/build/module-test",
+	"dir-cur-src" : "/ws/modules/module-test",
+	"dir-top-bld" : "/ws/modules/build",
+	"dir-top-src" : "/ws/modules",
+	"exports" : [],
+	"forward-modules-from-target-dirs" : [],
+	"include-dirs" : [],
+	"language" : "CXX",
+	"linked-target-dirs" : 
+	[
+		"/ws/modules/build/CMakeFiles/__cmake_cxx23.dir"
+	],
+	"module-dir" : "/ws/modules/build/module-test/CMakeFiles/module-simple.dir"
+}

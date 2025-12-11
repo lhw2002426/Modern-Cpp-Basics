@@ -1,0 +1,17 @@
+{
+  "revision": 0,
+  "rules": [
+    {
+      "primary-output": "module-test/CMakeFiles/module-global-frag.dir/global-fragment/main.cpp.o",
+      "requires": [
+        {
+          "logical-name": "std"
+        },
+        {
+          "logical-name": "Person"
+        }
+      ]
+    }
+  ],
+  "version": 1
+}

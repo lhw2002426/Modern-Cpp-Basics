@@ -1,0 +1,21 @@
+{
+  "revision": 0,
+  "rules": [
+    {
+      "primary-output": "module-test/CMakeFiles/module-partition.dir/partition/Person-Order.mpp.o",
+      "provides": [
+        {
+          "is-interface": false,
+          "logical-name": "Person:Order",
+          "source-path": "/ws/modules/module-test/partition/Person-Order.mpp"
+        }
+      ],
+      "requires": [
+        {
+          "logical-name": "std"
+        }
+      ]
+    }
+  ],
+  "version": 1
+}

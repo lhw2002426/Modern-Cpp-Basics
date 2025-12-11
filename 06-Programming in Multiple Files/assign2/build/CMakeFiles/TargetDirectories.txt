@@ -1,0 +1,3 @@
+/ws/assign2/build/CMakeFiles/a.dir
+/ws/assign2/build/CMakeFiles/edit_cache.dir
+/ws/assign2/build/CMakeFiles/rebuild_cache.dir

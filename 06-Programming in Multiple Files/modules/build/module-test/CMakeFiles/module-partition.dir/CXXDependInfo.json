@@ -1,0 +1,53 @@
+{
+	"bmi-installation" : null,
+	"compiler-frontend-variant" : "GNU",
+	"compiler-id" : "Clang",
+	"compiler-simulate-id" : "",
+	"config" : "",
+	"cxx-modules" : 
+	{
+		"module-test/CMakeFiles/module-partition.dir/partition/Person-Order.mpp.o" : 
+		{
+			"bmi-only" : false,
+			"destination" : null,
+			"name" : "CXX_MODULES",
+			"relative-directory" : "partition",
+			"source" : "/ws/modules/module-test/partition/Person-Order.mpp",
+			"type" : "CXX_MODULES",
+			"visibility" : "PUBLIC"
+		},
+		"module-test/CMakeFiles/module-partition.dir/partition/Person-Utils.mpp.o" : 
+		{
+			"bmi-only" : false,
+			"destination" : null,
+			"name" : "CXX_MODULES",
+			"relative-directory" : "partition",
+			"source" : "/ws/modules/module-test/partition/Person-Utils.mpp",
+			"type" : "CXX_MODULES",
+			"visibility" : "PUBLIC"
+		},
+		"module-test/CMakeFiles/module-partition.dir/partition/Person.mpp.o" : 
+		{
+			"bmi-only" : false,
+			"destination" : null,
+			"name" : "CXX_MODULES",
+			"relative-directory" : "partition",
+			"source" : "/ws/modules/module-test/partition/Person.mpp",
+			"type" : "CXX_MODULES",
+			"visibility" : "PUBLIC"
+		}
+	},
+	"dir-cur-bld" : "/ws/modules/build/module-test",
+	"dir-cur-src" : "/ws/modules/module-test",
+	"dir-top-bld" : "/ws/modules/build",
+	"dir-top-src" : "/ws/modules",
+	"exports" : [],
+	"forward-modules-from-target-dirs" : [],
+	"include-dirs" : [],
+	"language" : "CXX",
+	"linked-target-dirs" : 
+	[
+		"/ws/modules/build/CMakeFiles/__cmake_cxx23.dir"
+	],
+	"module-dir" : "/ws/modules/build/module-test/CMakeFiles/module-partition.dir"
+}

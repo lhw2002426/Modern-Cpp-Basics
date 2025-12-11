@@ -1,0 +1,4 @@
+-fmodule-file=std=CMakeFiles/__cmake_cxx23.dir/std.pcm
+-fmodule-file=Person=module-test/CMakeFiles/module-partition.dir/Person.pcm
+-fmodule-file=Person:Order=module-test/CMakeFiles/module-partition.dir/Person-Order.pcm
+-fmodule-file=Person:Utils=module-test/CMakeFiles/module-partition.dir/Person-Utils.pcm

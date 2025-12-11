@@ -1,0 +1,39 @@
+{
+	"modules" : 
+	{
+		"Person" : 
+		{
+			"bmi" : "/ws/modules/build/module-test/CMakeFiles/module-global-frag.dir/Person.pcm",
+			"is-private" : false
+		}
+	},
+	"references" : 
+	{
+		"Person" : 
+		{
+			"lookup-method" : "by-name",
+			"path" : "module-test/CMakeFiles/module-global-frag.dir/Person.pcm"
+		},
+		"std" : 
+		{
+			"lookup-method" : "by-name",
+			"path" : "CMakeFiles/__cmake_cxx23.dir/std.pcm"
+		},
+		"std.compat" : 
+		{
+			"lookup-method" : "by-name",
+			"path" : "CMakeFiles/__cmake_cxx23.dir/std.compat.pcm"
+		}
+	},
+	"usages" : 
+	{
+		"Person" : 
+		[
+			"std"
+		],
+		"std.compat" : 
+		[
+			"std"
+		]
+	}
+}

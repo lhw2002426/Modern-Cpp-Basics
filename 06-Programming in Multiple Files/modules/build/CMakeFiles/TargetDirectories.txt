@@ -1,0 +1,11 @@
+/ws/modules/build/CMakeFiles/__cmake_cxx23.dir
+/ws/modules/build/CMakeFiles/__cmake_cxx26.dir
+/ws/modules/build/CMakeFiles/edit_cache.dir
+/ws/modules/build/CMakeFiles/rebuild_cache.dir
+/ws/modules/build/module-test/CMakeFiles/module-simple.dir
+/ws/modules/build/module-test/CMakeFiles/module-split-impl.dir
+/ws/modules/build/module-test/CMakeFiles/module-partition.dir
+/ws/modules/build/module-test/CMakeFiles/module-global-frag.dir
+/ws/modules/build/module-test/CMakeFiles/module-private.dir
+/ws/modules/build/module-test/CMakeFiles/edit_cache.dir
+/ws/modules/build/module-test/CMakeFiles/rebuild_cache.dir

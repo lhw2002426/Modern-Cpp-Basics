@@ -1,0 +1,10 @@
+ninja_dyndep_version = 1.0
+build module-test/CMakeFiles/module-global-frag.dir/global-fragment/Old.cpp.o: dyndep
+
+build module-test/CMakeFiles/module-global-frag.dir/global-fragment/Person.cpp.o: dyndep | CMakeFiles/__cmake_cxx23.dir/std.pcm module-test/CMakeFiles/module-global-frag.dir/Person.pcm
+
+build module-test/CMakeFiles/module-global-frag.dir/global-fragment/main.cpp.o: dyndep | CMakeFiles/__cmake_cxx23.dir/std.pcm module-test/CMakeFiles/module-global-frag.dir/Person.pcm
+
+build module-test/CMakeFiles/module-global-frag.dir/global-fragment/Person.mpp.o | module-test/CMakeFiles/module-global-frag.dir/Person.pcm: dyndep | CMakeFiles/__cmake_cxx23.dir/std.pcm
+  restat = 1
+

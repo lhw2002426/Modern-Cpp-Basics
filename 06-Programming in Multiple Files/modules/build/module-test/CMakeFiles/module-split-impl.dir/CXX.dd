@@ -1,0 +1,10 @@
+ninja_dyndep_version = 1.0
+build module-test/CMakeFiles/module-split-impl.dir/split-impl/Person-Funcs.cpp.o: dyndep | CMakeFiles/__cmake_cxx23.dir/std.pcm module-test/CMakeFiles/module-split-impl.dir/Person.pcm
+
+build module-test/CMakeFiles/module-split-impl.dir/split-impl/Person.cpp.o: dyndep | CMakeFiles/__cmake_cxx23.dir/std.pcm module-test/CMakeFiles/module-split-impl.dir/Person.pcm
+
+build module-test/CMakeFiles/module-split-impl.dir/split-impl/main.cpp.o: dyndep | CMakeFiles/__cmake_cxx23.dir/std.pcm module-test/CMakeFiles/module-split-impl.dir/Person.pcm
+
+build module-test/CMakeFiles/module-split-impl.dir/split-impl/Person.mpp.o | module-test/CMakeFiles/module-split-impl.dir/Person.pcm: dyndep | CMakeFiles/__cmake_cxx23.dir/std.pcm
+  restat = 1
+

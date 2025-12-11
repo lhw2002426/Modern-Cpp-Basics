@@ -1,0 +1,21 @@
+{
+  "revision": 0,
+  "rules": [
+    {
+      "primary-output": "module-test/CMakeFiles/module-private.dir/private-fragment/Person.mpp.o",
+      "provides": [
+        {
+          "is-interface": true,
+          "logical-name": "Person",
+          "source-path": "/ws/modules/module-test/private-fragment/Person.mpp"
+        }
+      ],
+      "requires": [
+        {
+          "logical-name": "std"
+        }
+      ]
+    }
+  ],
+  "version": 1
+}

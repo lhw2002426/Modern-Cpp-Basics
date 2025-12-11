@@ -1,0 +1,54 @@
+{
+	"modules" : 
+	{
+		"Customer" : 
+		{
+			"bmi" : "/ws/modules/build/module-test/CMakeFiles/module-simple.dir/Customer.pcm",
+			"is-private" : false
+		},
+		"Person" : 
+		{
+			"bmi" : "/ws/modules/build/module-test/CMakeFiles/module-simple.dir/Person.pcm",
+			"is-private" : false
+		}
+	},
+	"references" : 
+	{
+		"Customer" : 
+		{
+			"lookup-method" : "by-name",
+			"path" : "module-test/CMakeFiles/module-simple.dir/Customer.pcm"
+		},
+		"Person" : 
+		{
+			"lookup-method" : "by-name",
+			"path" : "module-test/CMakeFiles/module-simple.dir/Person.pcm"
+		},
+		"std" : 
+		{
+			"lookup-method" : "by-name",
+			"path" : "CMakeFiles/__cmake_cxx23.dir/std.pcm"
+		},
+		"std.compat" : 
+		{
+			"lookup-method" : "by-name",
+			"path" : "CMakeFiles/__cmake_cxx23.dir/std.compat.pcm"
+		}
+	},
+	"usages" : 
+	{
+		"Customer" : 
+		[
+			"Person",
+			"std"
+		],
+		"Person" : 
+		[
+			"std"
+		],
+		"std.compat" : 
+		[
+			"std"
+		]
+	}
+}

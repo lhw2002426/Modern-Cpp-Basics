@@ -1,0 +1,9 @@
+ninja_dyndep_version = 1.0
+build module-test/CMakeFiles/module-simple.dir/simple/main.cpp.o: dyndep | CMakeFiles/__cmake_cxx23.dir/std.pcm module-test/CMakeFiles/module-simple.dir/Customer.pcm
+
+build module-test/CMakeFiles/module-simple.dir/simple/Person.mpp.o | module-test/CMakeFiles/module-simple.dir/Person.pcm: dyndep | CMakeFiles/__cmake_cxx23.dir/std.pcm
+  restat = 1
+
+build module-test/CMakeFiles/module-simple.dir/simple/Customer.mpp.o | module-test/CMakeFiles/module-simple.dir/Customer.pcm: dyndep | module-test/CMakeFiles/module-simple.dir/Person.pcm CMakeFiles/__cmake_cxx23.dir/std.pcm
+  restat = 1
+

@@ -1,0 +1,70 @@
+{
+	"modules" : 
+	{
+		"Person" : 
+		{
+			"bmi" : "/ws/modules/build/module-test/CMakeFiles/module-partition.dir/Person.pcm",
+			"is-private" : false
+		},
+		"Person:Order" : 
+		{
+			"bmi" : "/ws/modules/build/module-test/CMakeFiles/module-partition.dir/Person-Order.pcm",
+			"is-private" : false
+		},
+		"Person:Utils" : 
+		{
+			"bmi" : "/ws/modules/build/module-test/CMakeFiles/module-partition.dir/Person-Utils.pcm",
+			"is-private" : false
+		}
+	},
+	"references" : 
+	{
+		"Person" : 
+		{
+			"lookup-method" : "by-name",
+			"path" : "module-test/CMakeFiles/module-partition.dir/Person.pcm"
+		},
+		"Person:Order" : 
+		{
+			"lookup-method" : "by-name",
+			"path" : "module-test/CMakeFiles/module-partition.dir/Person-Order.pcm"
+		},
+		"Person:Utils" : 
+		{
+			"lookup-method" : "by-name",
+			"path" : "module-test/CMakeFiles/module-partition.dir/Person-Utils.pcm"
+		},
+		"std" : 
+		{
+			"lookup-method" : "by-name",
+			"path" : "CMakeFiles/__cmake_cxx23.dir/std.pcm"
+		},
+		"std.compat" : 
+		{
+			"lookup-method" : "by-name",
+			"path" : "CMakeFiles/__cmake_cxx23.dir/std.compat.pcm"
+		}
+	},
+	"usages" : 
+	{
+		"Person" : 
+		[
+			"Person:Order",
+			"Person:Utils",
+			"std"
+		],
+		"Person:Order" : 
+		[
+			"std"
+		],
+		"Person:Utils" : 
+		[
+			"Person:Order",
+			"std"
+		],
+		"std.compat" : 
+		[
+			"std"
+		]
+	}
+}
