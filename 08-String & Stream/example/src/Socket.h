@@ -99,6 +99,7 @@ inline auto GetErrorCode()
 #endif
 }
 
+// Windows下需要调用WSAStartup初始化网络库
 inline bool Startup()
 {
 #ifdef _WIN32

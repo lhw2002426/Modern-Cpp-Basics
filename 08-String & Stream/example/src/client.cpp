@@ -15,11 +15,13 @@ int main()
     }
 
     Network::OTCPStream stream;
+    // buffer size设置为4字节，每4字节发送一次
     stream.open(std::move(connectSocket), 4);
     std::string str;
     for (int i = 0; i < 10; i++)
     {
         std::cin >> str;
+        //每次输入后立刻发送
         stream << str << std::flush;
     }
 

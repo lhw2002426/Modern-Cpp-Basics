@@ -86,6 +86,7 @@ public:
     }
 };
 
+//自己实现的buf 继承自 std::basic_streambuf char特化后的类型 之所以用继承而不是模板， 是因为万一模板类型是两字节的，可能会被网络传输截断
 class TCPBuf : public std::basic_streambuf<char>
 {
     static_assert(sizeof(char_type) == 1);
@@ -99,6 +100,7 @@ public:
     TCPBuf(TCPBuf &&another) = default;
     ~TCPBuf() override { FlushBuffer_(); }
 
+    // open函数负责设置缓冲区和关联socket
     TCPBuf *open(Socket &&socket, std::ios::openmode mode,
                  std::streamsize inSize, std::streamsize outSize)
     {
@@ -118,12 +120,14 @@ public:
         setp(outBuffer.begin(), outBuffer.end());
 
         socket_ = std::move(socket);
+        //使用移动语义的原因是防止失败时，原来的socket还能保持有效
         inBuffer = std::move(inBuffer), outBuffer_ = std::move(outBuffer);
         return this;
     }
 
     bool is_open() const noexcept { return static_cast<bool>(socket_); }
 
+    //close涉及dealloc buffer和关闭socket  是noexcept的
     TCPBuf *close() noexcept
     {
         FlushBuffer_();
@@ -143,6 +147,7 @@ private:
     std::streamsize SendAsMuchAsPossible_(const char *ptr, std::streamsize size)
     {
         assert(size <= std::numeric_limits<int>::max());
+        // 尽可能多地发送数据
         while (size != 0)
         {
             int resultSize =
@@ -156,6 +161,7 @@ private:
         return size;
     }
 
+    // 获取输出缓冲区剩余空间
     auto GetOutputRemainSize_() const noexcept { return epptr() - pptr(); }
 
     void MemcpyToOutputBuffer_(const char_type *ptr, std::streamsize size)
@@ -167,6 +173,7 @@ private:
     }
 
 protected:
+    // 溢出空间时，写一个字节
     int_type overflow(int_type ch = s_EOF_) override
     {
         if (!socket_)
@@ -174,7 +181,7 @@ protected:
 
         if (traits_type::eq_int_type(ch, s_EOF_))
             return s_NotEOF_;
-
+        // 如果没有输出buffer，直接发送
         if (outBuffer_.GetRawBuffer() == nullptr)
         {
             char_type realCh = ch;
@@ -197,11 +204,12 @@ protected:
         return s_NotEOF_;
     }
 
+    // 批量写入而不经过中间的buffer
     std::streamsize xsputn(const char_type *s, std::streamsize count) override
     {
         if (!socket_)
             return 0;
-
+        // 如果要发送的内容小于buffer剩余空间，直接拷贝过去
         if (GetOutputRemainSize_() >= count)
         {
             MemcpyToOutputBuffer_(s, count);
@@ -212,6 +220,7 @@ protected:
         if (FlushBuffer_())
         {
             auto failSize = SendAsMuchAsPossible_(s, count);
+            // 全部发送完, 直接返回
             if (failSize == 0)
             {
                 return count;
@@ -226,6 +235,7 @@ protected:
         return successSize + largestSize;
     }
 
+    //覆写std::streambuf的sync函数  flush调用时会调用它
     int sync() override { return FlushBuffer_() ? 0 : -1; }
 
     bool FlushBuffer_()
@@ -233,6 +243,7 @@ protected:
         // [pbase, pptr) 已经有内容，进行刷新（全部写出）
         auto begPtr = this->pbase();
         auto msgSize = this->pptr() - begPtr;
+        // 为空就直接返回true
         if (msgSize == 0)
         {
             return true;
@@ -245,7 +256,9 @@ protected:
             this->setp(outBuffer_.begin(), outBuffer_.end());
             return true;
         }
+        // 还有未发送完的，调整指针，保证指针始终指向未发送的数据
         this->setp(this->pptr() - failSize, this->epptr());
+        // 前进pptr到未发送数据的末尾
         this->pbump(static_cast<int>(failSize));
         return false;
     }
@@ -280,6 +293,7 @@ protected:
 
 private:
     Socket socket_;
+    //tcp是双端的，因此in和out都需要buffer
     UserManagableBuffer<char_type> inBuffer_;
     UserManagableBuffer<char_type> outBuffer_;
 };

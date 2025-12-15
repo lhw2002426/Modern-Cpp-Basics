@@ -21,6 +21,7 @@ int main()
     char str[1024];
     while (true)
     {
+        // 接收数据
         int len = ::recv(acceptSock.GetHandle(), str, 1024, 0);
         if (len <= 0)
             break;
