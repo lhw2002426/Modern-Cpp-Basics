@@ -278,6 +278,30 @@
    >
    > 这下编译过了，想想有没有什么问题？和我们上面写的有什么区别？
 
+'''
+小哲“瞎写”的 std::min<int>(size, INT_MAX) 为什么能编译？
+
+因为他强行指定了模板实参：T = int。于是签名变成：
+
+min<int>(const int& a, const int& b)
+
+
+这会导致两个实参都被转换为 int（尤其是 size 被转换为 int），编译器就不再抱怨类型不一致。
+
+换句话说，他通过显式模板参数绕过了推导失败，但同时也引入了更危险的隐式转换。
+
+3) std::min<int>(size, INT_MAX) 有什么问题？
+3.1 关键问题：size 先被转换成 int，可能产生不可接受的结果
+
+如果 size 的值超过 INT_MAX，那么把它转换成 int 的行为是：
+
+对于 unsigned → signed 或 超范围 signed → signed 的转换：结果是 实现定义（implementation-defined） 或可能触发信号（极少见）；总之不可靠。
+
+你提到“C++20 signed overflow 良定义”为 mod 2^n——这点需要非常谨慎：
+C++20 并没有把“有符号整数溢出”整体改为良定义；表达式层面的有符号溢出规则仍然是 UB（例如 int a=INT_MAX; a+1; 仍是 UB）。
+而这里是整数转换（cast / narrowing conversion），不是加法溢出；其规则本来就不是“mod 2^n 保证”，而是实现定义/未指定范畴的东西，不能用来写网络 I/O 这种底层代码。
+'''
+
 2. 没有意义，因为`sync`的作用是从external device重新load内容，这样当external device的内容实际改变时，能够得到最新内容。然而，网络的内容发送或接受后就不能反悔了，没有所谓“最新”。
 
    这只是针对我们当前的情况；小刘想实现一个基于FTP协议的流，那么情况完全不同了。虽然这仍然基于网络，但是external device变为了另一方的文件，文件自然可以反悔式修改，此时`sync`的同步就有意义了。
